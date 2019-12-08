@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, Button } from 'react-native';
 import { Container, Content, Header, Left, Icon } from 'native-base';
 import TalksList from './TalksList';
-import * as appConstants from '../constants/appConstants';
 import axios from 'axios';
 
 export class HomeScreen extends React.Component {
@@ -18,9 +17,13 @@ export class HomeScreen extends React.Component {
   }
 
   render() {
+    const navigate = (screen, data) => {
+      this.props.navigation.navigate(screen, data);
+    }
+
     let cards;
     if (this.state.list.length > 0) {
-      cards = <TalksList list={this.state.list} />
+      cards = <TalksList list={this.state.list} navigate={navigate} />
     } else {
       cards = <Text>Sem Palestras</Text>;
     }

@@ -8,6 +8,7 @@ export class DetailsScreen extends React.Component {
     super(props);
 
     this.data = this.props.navigation.getParam('data');
+    this.palestra = this.props.navigation.getParam('palestra');
   }
   render() {
     return (
@@ -19,7 +20,7 @@ export class DetailsScreen extends React.Component {
         </Header>
         <View>
           <Text>Details Screen</Text>
-          <Text>Data: {this.data}</Text>
+          <Text>Data: {this.palestra}</Text>
           <Button
             title="Go to Home"
             onPress={() =>

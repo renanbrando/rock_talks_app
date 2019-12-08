@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button } from 'react-native';
 import { Card, CardItem, Left, Right, Thumbnail, Body } from 'native-base';
+import appConstants from '../constants/appConstants';
 
 const TalkCard = (props) => {
   const { Imagem, Titulo, Palestrante, Data, Hora, QtdVagasDisponiveis } = props.palestra;
@@ -19,7 +20,9 @@ const TalkCard = (props) => {
       </CardItem>
       <CardItem>
         <Right>
-          <Button title='Ver mais' />
+          <Button title='Ver mais' onPress={() =>
+              props.navigate(appConstants.SCREEN.DETAILS, {palestra: props.palestra})
+            } />
         </Right>
       </CardItem>
     </Card>

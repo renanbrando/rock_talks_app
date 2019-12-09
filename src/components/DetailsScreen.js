@@ -4,11 +4,9 @@ import { Header, Left, Icon, Container, Content } from 'native-base';
 import * as appConstants from '../constants/appConstants';
 
 export class DetailsScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.palestra = this.props.navigation.getParam('palestra');
-  }
+
   render() {
+    this.palestra = this.props.navigation.getParam('palestra');
     return (
       <Container>
         <Header>

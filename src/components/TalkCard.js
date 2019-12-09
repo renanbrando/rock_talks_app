@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
-import { Card, CardItem, Left, Right, Thumbnail, Body } from 'native-base';
+import { Text, Button, Image } from 'react-native';
+import { Card, CardItem, Left, Right, Body, Thumbnail } from 'native-base';
 import * as appConstants from '../constants/appConstants';
 
 const TalkCard = (props) => {
@@ -9,7 +9,7 @@ const TalkCard = (props) => {
     <Card>
       <CardItem>
         <Left>
-          <Thumbnail />
+          <Image source={loadImage(Imagem)} />
           <Body>
             <Text>Nome: {Titulo}</Text>
             <Text note>Palestrante: {Palestrante}</Text>
@@ -31,3 +31,20 @@ const TalkCard = (props) => {
 }
 
 export default TalkCard;
+
+const loadImage = (img) => {
+  switch (img) {
+    case '1.jpg':
+      return require('../assets/images/1.jpg')
+    case '2.jpg':
+      return require('../assets/images/2.jpg')
+    case '3.jpg':
+      return require('../assets/images/3.jpg')
+    case '4.jpg':
+      return require('../assets/images/4.jpg')
+    case '5.jpg':
+      return require('../assets/images/5.jpg')
+    default:
+      return require('../assets/images/1.jpg')
+  }
+}

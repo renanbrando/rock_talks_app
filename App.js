@@ -3,6 +3,7 @@ import { SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { HomeScreen, RegistrationsScreen, DetailsScreen } from './src/components';
+import { Root } from 'native-base';
 
 const AppDrawerNavigator = createDrawerNavigator({
   Home: HomeScreen,
@@ -22,6 +23,10 @@ const CustomDrawerComponent = (props) => (
 export default class App extends React.Component {
   render() {
     const AppContainer = createAppContainer(AppDrawerNavigator);
-    return <AppContainer />;
+    return (
+      <Root>
+        <AppContainer />
+      </Root>
+    )
   }
 }

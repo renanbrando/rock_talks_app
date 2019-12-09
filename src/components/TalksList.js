@@ -13,7 +13,7 @@ const TalksList = (props) => {
 						{
 							item.Palestras.map((p, i) => (
 								<View key={i}>
-									<TalkCard palestra={p} navigate={props.navigate}/>
+									<TalkCard palestra={p} navigation={props.navigation}/>
 								</View>
 							))
 						}

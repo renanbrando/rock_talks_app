@@ -2,10 +2,11 @@ import React from 'react';
 import { SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
-import { HomeScreen, RegistrationsScreen } from './src/components';
+import { HomeScreen, RegistrationsScreen, DetailsScreen } from './src/components';
 
 const AppDrawerNavigator = createDrawerNavigator({
   Home: HomeScreen,
+  Details: DetailsScreen,
   Registrations: RegistrationsScreen,
 }
 );

@@ -1,6 +1,7 @@
 module.exports = {
   SCREEN: {
     HOME: 'Home',
-    DETAILS: 'Details'
+    DETAILS: 'Details',
+    REGISTRATIONS: 'Registrations'
   }
 }

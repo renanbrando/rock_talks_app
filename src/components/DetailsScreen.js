@@ -1,38 +1,39 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { Header, Left, Icon } from 'native-base';
+import { Text, Button } from 'react-native';
+import { Header, Left, Icon, Container, Content } from 'native-base';
 import * as appConstants from '../constants/appConstants';
 
 export class DetailsScreen extends React.Component {
   constructor(props) {
     super(props);
-
-    this.data = this.props.navigation.getParam('data');
     this.palestra = this.props.navigation.getParam('palestra');
   }
   render() {
     return (
-      <View>
+      <Container>
         <Header>
           <Left>
             <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
           </Left>
         </Header>
-        <View>
-          <Text>Details Screen</Text>
-          <Text>Data: {this.palestra.Titulo}</Text>
+        <Content style={{paddingHorizontal: 16}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginVertical: 16}}>Detalhe</Text>
+          <Text style={{fontSize: 14, fontWeight: 'bold', marginVertical: 8 }}>{this.palestra.Titulo}</Text>
+          <Text style={{fontSize: 14, marginVertical: 8 }}>Palestrante: {this.palestra.Palestrante}</Text>
+          <Text style={{fontSize: 14, marginVertical: 8 }}>Data: {this.palestra.Data} {this.palestra.Hora}</Text>
+          <Text style={{fontSize: 14, marginVertical: 8 }}>{this.palestra.Descricao}</Text>
           <Button
-            title="Go to Home"
+            title="Se inscrever"
             onPress={() =>
               this.props.navigation.navigate(appConstants.SCREEN.HOME)
             }
           />
           <Button
-            title="Go back"
+            title="Voltar"
             onPress={() => this.props.navigation.goBack()}
           />
-        </View>
-      </View>
+        </Content>
+      </Container>
     );
   }
 }

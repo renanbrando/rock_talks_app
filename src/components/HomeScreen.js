@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { Container, Content, Header, Left, Icon } from 'native-base';
 import TalksList from './TalksList';
 import axios from 'axios';
@@ -12,20 +12,17 @@ export class HomeScreen extends React.Component {
   componentDidMount() {
     axios.get('https://5dec46afd444dd001422a785.mockapi.io/talks').then(response => {
       this.setState({list: response.data});
-      console.log(response.data);
     });
   }
 
   render() {
-    const navigate = (screen, data) => {
-      this.props.navigation.navigate(screen, data);
-    }
-
     let cards;
     if (this.state.list.length > 0) {
-      cards = <TalksList list={this.state.list} navigate={navigate} />
+      cards = <TalksList list={this.state.list} navigation={this.props.navigation} />
     } else {
-      cards = <Text>Sem Palestras</Text>;
+      cards = (<View style={[styles.container, styles.horizontal]}>
+                <ActivityIndicator size="large" color="#0000ff" />
+              </View>)
     }
     return (
       <Container>
@@ -41,3 +38,16 @@ export class HomeScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
+  }
+})
+

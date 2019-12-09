@@ -1,2 +1,3 @@
 export * from './HomeScreen';
-export * from './DetailsSreen';
+export * from './DetailsScreen';
+export * from './RegistrationsScreen'

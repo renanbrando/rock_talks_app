@@ -20,7 +20,7 @@ export class DetailsScreen extends React.Component {
         </Header>
         <View>
           <Text>Details Screen</Text>
-          <Text>Data: {this.palestra}</Text>
+          <Text>Data: {this.palestra.Titulo}</Text>
           <Button
             title="Go to Home"
             onPress={() =>

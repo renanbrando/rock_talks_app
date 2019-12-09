@@ -2,17 +2,13 @@ import React from 'react';
 import { SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
-import { HomeScreen, DetailsScreen } from './src/components';
+import { HomeScreen, RegistrationsScreen } from './src/components';
 
 const AppDrawerNavigator = createDrawerNavigator({
   Home: HomeScreen,
-  Details: DetailsScreen,
-}, {
-  contentComponent: CustomDrawerComponent
+  Registrations: RegistrationsScreen,
 }
 );
-
-const AppContainer = createAppContainer(AppDrawerNavigator);
 
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{flex: 1}}>
@@ -24,6 +20,7 @@ const CustomDrawerComponent = (props) => (
 
 export default class App extends React.Component {
   render() {
+    const AppContainer = createAppContainer(AppDrawerNavigator);
     return <AppContainer />;
   }
 }

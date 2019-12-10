@@ -5,12 +5,12 @@ import TalksList from './TalksList';
 import axios from 'axios';
 
 var BUTTONS = [
-  { text: "Gestão de Pessoas", icon: "american-football", iconColor: "#2c8ef4" },
-  { text: "Tecnologia", icon: "analytics", iconColor: "#f42ced" },
-  { text: "Empreendedorismo", icon: "aperture", iconColor: "#ea943b" },
-  { text: "Cultura Maker", icon: "aperture", iconColor: "#ea943b" },
-  { text: "Resetar Filtros", icon: "trash", iconColor: "#fa213b" },
-  { text: "Cancelar", icon: "close", iconColor: "#25de5b" }
+  { text: "Gestão de Pessoas", icon: "people", iconColor: "#2c8ef4", id: "5dee65294faee13880c5d37a" },
+  { text: "Tecnologia", icon: "code-working", iconColor: "#f42ced", id: "5dee65794faee13880c5d37b" },
+  { text: "Empreendedorismo", icon: "briefcase", iconColor: "#ea943b", id: "5dee65844faee13880c5d37c" },
+  { text: "Cultura Maker", icon: "logo-codepen", iconColor: "#ea943b", id: "5dee65944faee13880c5d37d" },
+  { text: "Resetar Filtros", icon: "trash", iconColor: "#fa213b", id: null },
+  { text: "Cancelar", icon: "close-circle", iconColor: "#fa213b", id: null }
 ];
 
 var DESTRUCTIVE_INDEX = 4;
@@ -19,16 +19,22 @@ var CANCEL_INDEX = 5;
 export class HomeScreen extends React.Component {
   state = {
     list: [],
-    filteredList: []
+    filteredList: [],
+    categories: []
   }
 
   componentDidMount() {
-    axios.get('https://5dec46afd444dd001422a785.mockapi.io/talks').then(response => {
-      this.setState({
-        list: response.data,
-        filteredList: response.data
-      });
-    });
+    axios.all([
+      axios.get('https://rock-talks-api.herokuapp.com/category/find'),
+      axios.get('https://rock-talks-api.herokuapp.com/talk/find')
+      ]).then(axios.spread((categories, talks) => {
+        const data = parseList(talks.data, categories.data);
+        this.setState({
+          list: data,
+          filteredList: data,
+          cateogies: categories.data
+        });
+    }))
   }
 
   render() {
@@ -59,7 +65,7 @@ export class HomeScreen extends React.Component {
                   buttonIndex => {
                     if (buttonIndex != 5){
                       this.setState({ clicked: BUTTONS[buttonIndex] });
-                      this.setState({ filteredList: filterList(this.state.list, buttonIndex) });
+                      this.setState({ filteredList: filterList(this.state.list, BUTTONS[buttonIndex].id) });
                     }
                   }
                 )}
@@ -76,9 +82,23 @@ export class HomeScreen extends React.Component {
   }
 }
 
+const parseList = (list, categories) => {
+  let parsedList = [...categories]
+  parsedList.map((category) => {
+    category.talks = []
+    for (const item of list) {
+      if (item.category._id == category._id) {
+        category.talks.push(item)
+      }
+    }
+  })
+
+  return parsedList
+}
+
 const filterList = (list, cod) => {
-  if (cod != 4)
-    return list.filter(item => item.Codigo == cod + 1)
+  if (cod)
+    return list.filter(item => item._id == cod)
   else 
     return list
 }

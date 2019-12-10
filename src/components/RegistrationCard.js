@@ -3,7 +3,7 @@ import { Text, Button, Image } from 'react-native';
 import { Card, CardItem, Left, Right, Body, Thumbnail } from 'native-base';
 import * as appConstants from '../constants/appConstants';
 
-const TalkCard = (props) => {
+const RegistrationCard = (props) => {
   const { _id, imageUrl, title, speaker, date, places } = props.talk;
   return (
     <Card>
@@ -18,19 +18,11 @@ const TalkCard = (props) => {
           </Body>
         </Left>
       </CardItem>
-      <CardItem>
-        <Right>
-          <Button title='Ver mais' onPress={() => {
-              props.navigation.navigate(appConstants.SCREEN.DETAILS, {talk: props.talk})
-              }
-            } />
-        </Right>
-      </CardItem>
     </Card>
   )
 }
 
-export default TalkCard;
+export default RegistrationCard;
 
 const loadImage = (img) => {
   switch (img) {

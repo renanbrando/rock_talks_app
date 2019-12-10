@@ -9,11 +9,11 @@ const TalksList = (props) => {
 			{
 				list.map((item, index) => (
 					<View key={index}>
-						<Text style={{fontSize: 14, fontWeight: 'bold', marginVertical: 8}}>{item.Descricao}</Text>
+						<Text style={{fontSize: 14, fontWeight: 'bold', marginVertical: 8}}>{item.description}</Text>
 						{
-							item.Palestras.map((p, i) => (
+							item.talks.map((p, i) => (
 								<View key={i}>
-									<TalkCard palestra={p} navigation={props.navigation}/>
+									<TalkCard talk={p} navigation={props.navigation}/>
 								</View>
 							))
 						}
